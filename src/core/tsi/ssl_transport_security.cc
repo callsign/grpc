@@ -1675,7 +1675,7 @@ tsi_result tsi_create_ssl_client_handshaker_factory_with_options(
                                   options->cipher_suites);
     if (result != TSI_OK) break;
 
-#if OPENSSL_VERSION_NUMBER >= 0x10100000
+#if OPENSSL_VERSION_NUMBER >= 0x10100000 && !defined(LIBRESSL_VERSION_NUMBER)
     // X509_STORE_up_ref is only available since OpenSSL 1.1.
     if (options->root_store != nullptr) {
       X509_STORE_up_ref(options->root_store->store);
